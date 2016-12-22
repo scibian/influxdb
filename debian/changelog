@@ -1,0 +1,207 @@
+influxdb (1.1.1+dfsg1-2) unstable; urgency=medium
+
+  * Lintian overrides.
+
+ -- Alexandre Viau <aviau@debian.org>  Thu, 22 Dec 2016 00:50:08 -0500
+
+influxdb (1.1.1+dfsg1-1) unstable; urgency=medium
+
+  [ Alexandre Viau ]
+  * Import Guillem's work.
+  * Refresh jwt-v2.patch.
+  * Update influxdb.conf.
+  * Depend on newer golang-github-jwilder-encoding.
+  * Adapt disable-reporting.patch.
+  * Copy over iql files.
+  * Fix tests in jwt-v2.patch.
+
+  [ Guillem Jover ]
+  * New upstream release. (Closes: #846576)
+  * Fix build to work on github.com/dgrijalva/jwt-go v2.
+  * Pass --no-close to start-stop-daemon --start to get actual logging.
+
+ -- Alexandre Viau <aviau@debian.org>  Tue, 20 Dec 2016 21:25:35 -0500
+
+influxdb (1.0.2+dfsg1-1) unstable; urgency=medium
+
+  [ Alexandre Viau ]
+  * Update default configuration file.
+
+  [ Guillem Jover ]
+  * New upstream release. (Closes: #840656)
+
+ -- Alexandre Viau <aviau@debian.org>  Tue, 25 Oct 2016 13:19:04 -0400
+
+influxdb (0.13.0+dfsg1-5) unstable; urgency=medium
+
+  [ Alexandre Viau ]
+  * Prepare upload
+  * d/control: Add InfluxDB dependency on lsb-base (>= 3.0-6)
+  * Remove unused hardening-no-relro override
+
+  [ Guillem Jover ]
+  * Remove existing static files (Closes: #835336)
+  * Improve and fix init script (Closes: #840636)
+
+  [ Tim Potter ]
+  * Update influxdb-usage-client B-D to use backports
+
+ -- Alexandre Viau <aviau@debian.org>  Sat, 15 Oct 2016 14:12:16 -0400
+
+influxdb (0.13.0+dfsg1-4) unstable; urgency=medium
+
+  * Replace uglifyjs by yui-compressor
+
+ -- Alexandre Viau <aviau@debian.org>  Thu, 28 Jul 2016 13:58:37 -0400
+
+influxdb (0.13.0+dfsg1-3) unstable; urgency=medium
+
+  * Create var and logs directories with debhelper (Closes: #831982)
+
+ -- Alexandre Viau <aviau@debian.org>  Fri, 22 Jul 2016 10:59:15 -0400
+
+influxdb (0.13.0+dfsg1-2) unstable; urgency=medium
+
+  * d/rules clean: only build statik.go using
+    go generate (Closes: #829164)
+
+ -- Alexandre Viau <aviau@debian.org>  Fri, 01 Jul 2016 14:45:07 +0200
+
+influxdb (0.13.0+dfsg1-1) unstable; urgency=medium
+
+  * New upstream version
+  * Bumped Standards-Version to 3.9.8
+  * Hand over maintenance to pkg-go, set myself as
+    uploader instead
+
+ -- Alexandre Viau <aviau@debian.org>  Sat, 25 Jun 2016 22:21:05 +0200
+
+influxdb (0.12.0+dfsg1-3) unstable; urgency=medium
+
+  * Fixed unhandled symlink to directory conversion (Closes: #823571)
+
+ -- Alexandre Viau <aviau@debian.org>  Tue, 10 May 2016 11:54:42 -0400
+
+influxdb (0.12.0+dfsg1-2) unstable; urgency=medium
+
+  * Added warning in NEWS (Closes: #822491)
+
+ -- Alexandre Viau <aviau@debian.org>  Tue, 03 May 2016 22:08:16 -0400
+
+influxdb (0.12.0+dfsg1-1) unstable; urgency=medium
+
+  * New upstream version
+  * Added tmpl dependency
+  * Updated d/copyright
+
+ -- Alexandre Viau <aviau@debian.org>  Wed, 06 Apr 2016 17:19:45 -0400
+
+influxdb (0.10.2+dfsg1-2) unstable; urgency=medium
+
+  * Temporarly disable tests (Closes: #818069)
+
+ -- Alexandre Viau <aviau@debian.org>  Sun, 20 Mar 2016 11:11:21 -0400
+
+influxdb (0.10.2+dfsg1-1) unstable; urgency=medium
+
+  * New upstream version
+  * Updated Standards-Version to 3.9.7 (no changes)
+
+ -- Alexandre Viau <aviau@debian.org>  Tue, 08 Mar 2016 10:36:30 -0500
+
+influxdb (0.10.0+dfsg1-1) unstable; urgency=medium
+
+  * New upstream version
+  * Updated config file
+  * Include version at build time
+  * Updated links: influxdb -> influxdata
+
+ -- Alexandre Viau <aviau@debian.org>  Sun, 17 Jan 2016 16:36:39 -0500
+
+influxdb (0.9.6.1+dfsg1-4) unstable; urgency=medium
+
+  * Depend on jquery >= 1.9.1
+
+ -- Alexandre Viau <aviau@debian.org>  Sun, 03 Jan 2016 13:22:14 -0500
+
+influxdb (0.9.6.1+dfsg1-3) unstable; urgency=medium
+
+  * Avoid testing nothing
+
+ -- Alexandre Viau <aviau@debian.org>  Sun, 27 Dec 2015 21:34:54 -0500
+
+influxdb (0.9.6.1+dfsg1-2) unstable; urgency=medium
+
+  * Only run tests on amd64 and i386
+
+ -- Alexandre Viau <aviau@debian.org>  Sun, 27 Dec 2015 18:11:13 -0500
+
+influxdb (0.9.6.1+dfsg1-1) unstable; urgency=medium
+
+  * New upstream version
+  * Updated config file
+  * Updated dependencies:
+      + golang-github-paulbellamy-ratecounter-dev
+      + golang-github-influxdb-usage-client-dev
+
+ -- Alexandre Viau <aviau@debian.org>  Sun, 13 Dec 2015 16:55:54 -0500
+
+influxdb (0.9.5.1+dfsg1-1) unstable; urgency=medium
+
+  * New upstream version
+  * Changed my email to @debian.org
+  * Updated config file
+  * Added basic logrotate file
+  * Updated service file
+    - set KillMode to control-group
+    - added influxd.service alias
+  * Added new dependencies
+  * Switch to using XS-Go-Import-Path
+
+ -- Alexandre Viau <aviau@debian.org>  Fri, 04 Dec 2015 11:35:03 -0500
+
+influxdb (0.9.4+dfsg1-1) unstable; urgency=medium
+
+  * New upstream version
+  * Updated config file
+  * init: When stopping service, wait until actually exited
+  * Tests timeout is now 20 minutes
+  * Disable some flaky tests
+
+ -- Alexandre Viau <alexandre@alexandreviau.net>  Sun, 06 Sep 2015 21:49:47 -0400
+
+influxdb (0.9.2.1+dfsg1-2) unstable; urgency=medium
+
+  * Remove logs on purge
+  * Remove unused shlibs:Depends on dev package
+  * Rename dev package to golang-github-influxdb-influxdb-dev
+    (Closes: #798031)
+  * Fixed reversed group and user in init script
+  * Properly rebuild statik.go
+  * Allow for building the package twice
+  * Adapt to dh-golang >= 1.9
+    - Don't include .proto files manually
+    - export DH_GOLANG_GO_GENERATE := 1
+
+ -- Alexandre Viau <alexandre@alexandreviau.net>  Tue, 25 Aug 2015 23:07:35 -0400
+
+influxdb (0.9.2.1+dfsg1-1) unstable; urgency=medium
+
+  * New upstream version
+  * Disable reporting by default, even without a config file
+  * Changed arch to any
+  * Fixed tests on non-amd64 architectures (Closes: #795640)
+
+ -- Alexandre Viau <alexandre@alexandreviau.net>  Tue, 11 Aug 2015 13:12:42 -0400
+
+influxdb (0.9.2+dfsg1-2) unstable; urgency=medium
+
+  * Added missing copyright section for uuid/uuid.go
+
+ -- Alexandre Viau <alexandre@alexandreviau.net>  Wed, 29 Jul 2015 16:12:24 -0400
+
+influxdb (0.9.2+dfsg1-1) unstable; urgency=medium
+
+  * Initial release. (Closes: #765005)
+
+ -- Alexandre Viau <alexandre@alexandreviau.net>  Mon, 13 Jul 2015 09:37:20 -0400

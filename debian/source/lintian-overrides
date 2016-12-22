@@ -1,0 +1,3 @@
+# False positive, see https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=799861
+source-contains-prebuilt-javascript-object debian/missing-sources/react-0.13.3.js *
+source-is-missing debian/missing-sources/react-0.13.3.js *

@@ -1,0 +1,43 @@
+.\" Manpage for influxd.
+.\" Contact alexandre@alexandreviau.net to correct errors or typos.
+.TH man 8 "18 July 2015" "1.0" "influx man page"
+.SH NAME
+influx \- InfluxDB Shell
+.SH SYNOPSIS
+influx [options]
+.SH DESCRIPTION
+influx is an interactive shell to InfluxDB.
+.SH OPTIONS
+.B \-version
+Display the version and exit.
+.TP
+.B \-host <host name>
+Host to connect to.
+.TP
+.B \-port <port>
+Port to connect to.
+.TP
+.B \-database <database name>
+Database to connect to the server.
+.TP
+.B \-password <password>
+Password to connect to the server.  Leaving blank will prompt for password.
+.TP
+.B \-username <username>
+Username to connect to the server.
+.TP
+.B \-dump
+Dump the contents of the given database to stdout.
+.TP
+.B \-execute <command>
+Execute command and quit.
+.TP
+.B \-format <json|csv|column>
+Format specifies the format of the server responses:  json, csv, or column.
+.TP
+.B \-pretty
+Turns on pretty print for the json format.
+.SH SEE ALSO
+influxd(1)
+.SH AUTHOR
+Alexandre Viau (alexandre@alexandreviau.net)

@@ -1,0 +1,25 @@
+.\" Manpage for influxd.
+.\" Contact alexandre@alexandreviau.net to correct errors or typos.
+.TH man 8 "18 July 2015" "1.0" "influxd man page"
+.SH NAME
+influxd \- InfluxDB Server
+.SH SYNOPSIS
+influxd [options]
+.SH DESCRIPTION
+influxd is the primary daemon process for the InfluxDB system.
+.SH OPTIONS
+.B \-config <path>
+Set the configuration file
+.TP
+.B \-hostname <name>
+Override the hostname, the 'hostname' configuration option will be overridden.
+.TP
+.B \-join <url>
+Joins the server to an existing cluster.
+.TP
+.B \-pidfile <path>
+Write process ID to a file.
+.SH SEE ALSO
+influx(1)
+.SH AUTHOR
+Alexandre Viau (alexandre@alexandreviau.net)
