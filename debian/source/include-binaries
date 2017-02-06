@@ -1,0 +1,6 @@
+vendor/collectd.org/network/testdata/packet1.bin
+vendor/collectd.org/network/testdata/packet2.bin
+vendor/github.com/golang/snappy/testdata/Mark.Twain-Tom.Sawyer.txt.rawsnappy
+vendor/github.com/rakyll/statik/example/public/img/friends.jpg
+vendor/golang.org/x/crypto/ed25519/testdata/sign.input.gz
+vendor/golang.org/x/crypto/sha3/testdata/keccakKats.json.deflate

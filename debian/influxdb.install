@@ -1,2 +1,2 @@
-usr/bin/influxd usr/bin
+build/influxd usr/bin
 debian/influxdb.conf etc/influxdb

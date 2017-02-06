@@ -1,7 +1,0 @@
-# Each symlink point to a file provided by libjs-bootstrap, which is a dependency
-package-contains-broken-symlink usr/share/gocode/src/github.com/influxdb/influxdb/shared/admin/css/bootstrap.css ../../../../../../../../javascript/bootstrap/css/bootstrap.css
-package-contains-broken-symlink usr/share/gocode/src/github.com/influxdb/influxdb/shared/admin/fonts/glyphicons-halflings-regular.eot ../../../../../../../../javascript/bootstrap/fonts/glyphicons-halflings-regular.eot
-package-contains-broken-symlink usr/share/gocode/src/github.com/influxdb/influxdb/shared/admin/fonts/glyphicons-halflings-regular.svg ../../../../../../../../javascript/bootstrap/fonts/glyphicons-halflings-regular.svg
-package-contains-broken-symlink usr/share/gocode/src/github.com/influxdb/influxdb/shared/admin/fonts/glyphicons-halflings-regular.ttf ../../../../../../../../javascript/bootstrap/fonts/glyphicons-halflings-regular.ttf
-package-contains-broken-symlink usr/share/gocode/src/github.com/influxdb/influxdb/shared/admin/fonts/glyphicons-halflings-regular.woff ../../../../../../../../javascript/bootstrap/fonts/glyphicons-halflings-regular.woff
-package-contains-broken-symlink usr/share/gocode/src/github.com/influxdb/influxdb/shared/admin/fonts/glyphicons-halflings-regular.woff2 ../../../../../../../../javascript/bootstrap/fonts/glyphicons-halflings-regular.woff2

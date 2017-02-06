@@ -1,70 +1,23 @@
 #!/usr/bin/make -f
 # -*- makefile -*-
 
-DEBIAN_DIR = $(CURDIR)/debian
-TMP     = $(DEBIAN_DIR)/$(PACKAGE)
-SOURCE = $(TMP)/../
-
-export DH_GOLANG_GO_GENERATE := 1
-export DH_GOPKG := github.com/influxdata/influxdb
-
-%:
-	dh $@ --buildsystem=golang --with=golang,systemd --builddirectory=_build
-
-override_dh_auto_configure:
-	dh_auto_configure
-
-	# Include tests files
-	cp -v $(SOURCE)/stress/stress.toml _build/src/$(DH_GOPKG)/stress/stress.toml
-	mkdir -v -p _build/src/$(DH_GOPKG)/stress/v2/iql
-	cp -v $(SOURCE)/stress/v2/iql/file.iql _build/src/$(DH_GOPKG)/stress/v2/iql/file.iql
-	cp -v $(SOURCE)/stress/v2/iql/default.iql _build/src/$(DH_GOPKG)/stress/v2/iql/default.iql
-
-	# Install Web UI components
-	cp -v -r $(SOURCE)/services/admin/assets _build/src/$(DH_GOPKG)/services/admin
-
-	# Replace bundled javascript/css with our own
-	mkdir -v _build/src/$(DH_GOPKG)/services/admin/assets/js/vendor
-
-	ln -v -s /usr/share/javascript/bootstrap/js/bootstrap.min.js _build/src/$(DH_GOPKG)/services/admin/assets/js/vendor/bootstrap-3.3.5.min.js
-	ln -v -s /usr/share/javascript/jquery/jquery.min.js _build/src/$(DH_GOPKG)/services/admin/assets/js/vendor/jquery-2.1.4.min.js
-	yui-compressor $(TMP)/missing-sources/react-0.13.3.js -o _build/src/$(DH_GOPKG)/services/admin/assets/js/vendor/react-0.13.3.min.js
-	ln -v -s /usr/share/javascript/bootstrap/css/bootstrap.css _build/src/$(DH_GOPKG)/services/admin/assets/css/bootstrap.css
-
-	# glyphicons-halflings-regular.*
-	rm --verbose _build/src/$(DH_GOPKG)/services/admin/assets/fonts/glyphicons-halflings-regular.*
-	ln -s /usr/share/javascript/bootstrap/fonts/glyphicons-halflings-regular.*  _build/src/$(DH_GOPKG)/services/admin/assets/fonts/
-
-	# include tmpldata files
-	cp -v $(SOURCE)/tsdb/engine/tsm1/*.tmpl* _build/src/$(DH_GOPKG)/tsdb/engine/tsm1
-	cp -v $(SOURCE)/influxql/*.tmpl* _build/src/$(DH_GOPKG)/influxql
-	cp -v $(SOURCE)/influxql/tmpldata _build/src/$(DH_GOPKG)/influxql
-
-	# Remove statik files, latest version cannot cope.
-	rm -f _build/src/$(DH_GOPKG)/services/admin/statik/statik.go
-
-# influxdb version
-DEB_VERSION := $(shell dpkg-parsechangelog -l$(DEBIAN_DIR)/changelog --show-field Version)
+export GOPATH := $(CURDIR)/go
+export REPO_PATH := $(GOPATH)/src/github.com/influxdata/influxdb
+DEB_VERSION := $(shell dpkg-parsechangelog -ldebian/changelog --show-field Version)
 DEB_NOEPOCH_VERSION := $(shell echo $(DEB_VERSION) | cut -d: -f2-)
 DEB_UPSTREAM_VERSION := $(shell echo $(DEB_NOEPOCH_VERSION) | sed 's/-[^-]*$$//' | sed 's/[+~].*$$//')
 
+%:
+	dh $@ --with systemd
+
+
 override_dh_auto_build:
-	dh_auto_build -- -ldflags="-X main.version=$(DEB_UPSTREAM_VERSION)"
+	mkdir -p go/src/github.com/influxdata
+	ln -s $(CURDIR) go/src/github.com/influxdata/influxdb
 
-# Don't tests on unsupported architectures. Test are unstable.
-SKIP_TESTS := True
-
-ifeq ($(DEB_HOST_ARCH_CPU),amd64)
-SKIP_TESTS := False
-endif
-
-ifeq ($(DEB_HOST_ARCH_CPU),i386)
-SKIP_TESTS := False
-endif
+	cd $(REPO_PATH) && go build -o $(CURDIR)/build/influxd -ldflags="-X main.version=$(DEB_UPSTREAM_VERSION)" ./cmd/influxd
+	cd $(REPO_PATH) && go build -o $(CURDIR)/build/influx -ldflags="-X main.version=$(DEB_UPSTREAM_VERSION)" ./cmd/influx
+#	cd $(REPO_PATH) && go build -o $(CURDIR)/build/influx_tsm -ldflags="-X main.version=$(VERSION)" ./cmd/influx_tsm
+#	cd $(REPO_PATH) && go build -o $(CURDIR)/build/influx_stress -ldflags="-X main.version=$(VERSION)" ./cmd/influx_stress
 
 override_dh_auto_test:
-	if [ "$(SKIP_TESTS)" = "True" ]; then \
-		echo "Skipping tests"; \
-	else \
-		dh_auto_test -- -timeout 12000s; \
-	fi
