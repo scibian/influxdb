@@ -25,6 +25,7 @@ Comment: The header mentions a BSD-style license. I have sent PR to InfluxDB
 
 Files: debian/*
 Copyright: 2015 Alexandre Viau <alexandre@alexandreviau.net>
+           2017 Scibian Project <legal@scibian.org>
 License: Expat
 
 Files: debian/missing-sources/react-0.13.3.js

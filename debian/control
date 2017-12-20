@@ -2,11 +2,13 @@ Source: influxdb
 Section: database
 Priority: extra
 Homepage: https://influxdata.com/time-series-platform/influxdb/
-Maintainer: Ana Guerrero Lopez <ana-externe.guerrero@edf.fr>
+Maintainer: Scibian Project <packaging@scibian.org>
 Build-Depends: debhelper (>= 9),
                dh-systemd,
                golang-go,
 Standards-Version: 3.9.8
+Vcs-Git: https://github.com/scibian/influxdb.git
+Vcs-Browser: https://github.com/scibian/influxdb
 
 Package: influxdb
 Architecture: any
